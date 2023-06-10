@@ -10,3 +10,19 @@ CREATE TABLE animals (
 );
 
 ALTER TABLE animals ADD species VARCHAR(35);
+
+CREATE TABLE owners (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  full_name VARCHAR(40) NOT NULL,
+  age INT
+);
+
+CREATE TABLE species (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(40) NOT NULL
+);
+ 
+ ALTER TABLE animals DROP species;
+
+ ALTER TABLE animals ADD COLUMN species_id INT REFERENCES species(id);
+ ALTER TABLE animals ADD COLUMN owner_id INT REFERENCES owners(id);
