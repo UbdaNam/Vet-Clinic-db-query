@@ -59,3 +59,9 @@
  SELECT a.name, vt.name, v.date_of_visit FROM visits AS v JOIN animals AS a ON v.animal_id=a.id JOIN vets AS vt ON v.vet_id=vt.id WHERE v.date_of_visit=(SELECT MAX(date_of_visit) FROM visits) LIMIT 1;
  SELECT COUNT(*) FROM visits AS v JOIN animals AS a ON v.animal_id=a.id JOIN vets AS vt ON v.vet_id=vt.id LEFT JOIN specializations AS sp ON vt.id=sp.vet_id AND a.species_id = sp.species_id WHERE sp.vet_id <> sp.species_id;
  SELECT s.name FROM visits AS v JOIN animals AS a ON v.animal_id=a.id JOIN species AS s ON a.species_id=s.id WHERE v.vet_id=(SELECT id FROM vets WHERE name='Maisy Smith') GROUP BY s.name ORDER BY COUNT(*) DESC LIMIT 1;
+
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
